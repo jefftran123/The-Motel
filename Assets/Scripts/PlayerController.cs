@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     private float runninggSpeed = 5f;
     private float currentSpeed;
 
+    [Header("Gravity Settings")]
+    public float gravity = -9.81f;
+    private Vector3 velocity;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         Moving();
         Running();
+        HandlingGravity();
     }
 
     void Moving()
@@ -41,5 +46,17 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed = walkingSpeed;
         }
+    }
+
+    void HandlingGravity()
+    {
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
     }
 }
