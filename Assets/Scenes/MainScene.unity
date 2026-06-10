@@ -23850,6 +23850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
   mainCamera: {fileID: 737459008}
+  promptText: {fileID: 315543494}
   promptUI: {fileID: 299306720}
   interactRange: 3
 --- !u!1001 &872665360

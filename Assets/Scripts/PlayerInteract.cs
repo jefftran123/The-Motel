@@ -5,6 +5,7 @@ public class PlayerInteract : MonoBehaviour
 {
     [Header("References")]
     public Camera mainCamera;
+    public TextMeshProUGUI promptText;
     public GameObject promptUI;
 
     [Header("Settings")]
@@ -20,11 +21,16 @@ public class PlayerInteract : MonoBehaviour
         {
             if (hitInfo.collider.CompareTag("InteractableDoor"))
             {
+                DoorController doorScript = hitInfo.collider.GetComponent<DoorController>();
+                SetTextForDoor(doorScript.isOpen);
                 promptUI.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    
+                    if (doorScript != null)
+                    {
+                        doorScript.ToggleDoor();
+                    }
                 }
             }
             else
@@ -35,6 +41,17 @@ public class PlayerInteract : MonoBehaviour
         else
         {
             promptUI.SetActive(false);
+        }
+    }
+
+    void SetTextForDoor(bool isOpen)
+    {
+        if (isOpen)
+        {
+            promptText.SetText("F | Close door");
+        } else
+        {
+            promptText.SetText("F | Open door");
         }
     }
 }
