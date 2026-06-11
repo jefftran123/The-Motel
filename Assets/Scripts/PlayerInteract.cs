@@ -9,7 +9,7 @@ public class PlayerInteract : MonoBehaviour
     public GameObject promptUI;
 
     [Header("Settings")]
-    public float interactRange = 2f;
+    public float interactRange = 1f;
 
     void Update()
     {
